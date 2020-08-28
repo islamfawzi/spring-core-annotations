@@ -28,6 +28,10 @@ public class App {
 		Coach tennisCoach = applicationContext.getBean("tennisCoach", Coach.class);
 		logger.info(tennisCoach.getFortune());
 		
+		/** field injection **/
+		Coach basketBallCoach = applicationContext.getBean("basketBallCoach", Coach.class);
+		logger.info(basketBallCoach.getFortune());
+		
 		/** clean up applicationContext **/
 		applicationContext.close();
 		
