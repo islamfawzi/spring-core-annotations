@@ -1,7 +1,8 @@
-package org.spring.core.beans;
+package org.spring.core.app;
 
 import java.util.logging.Logger;
 
+import org.spring.core.beans.Coach;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
@@ -12,17 +13,22 @@ public class App {
 
 		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
 		
-		// inject myCoach bean
+		/** explicit bean id **/
 		// Coach myCoach = applicationContext.getBean("myCoach", Coach.class);
 		// logger.info(myCoach.getDailyWork());
 		
+		/** default bean id **/
 		Coach footballCoach = applicationContext.getBean("footballCoach", Coach.class);
 		logger.info(footballCoach.getDailyWork());
 		
-		// log the fortune retrieved from AutoWired fortuneService 
+		/** constructor injection **/ 
 		logger.info(footballCoach.getFortune());
 		
-		// clean up applicationContext
+		/** setter injection **/
+		Coach tennisCoach = applicationContext.getBean("tennisCoach", Coach.class);
+		logger.info(tennisCoach.getFortune());
+		
+		/** clean up applicationContext **/
 		applicationContext.close();
 		
 	}

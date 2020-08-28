@@ -8,12 +8,13 @@ import org.springframework.stereotype.Component;
 @Component // spring will generate default bean id=footballCoach
 public class FootballCoach implements Coach {
 	
-	FortuneService fortuneService;
+	private FortuneService fortuneService;
 	
 	public FootballCoach() {
 	}
 
 	/** Constructor injection **/
+	/** create constructor and annotate it with @Autowired **/
 	@Autowired
 	public FootballCoach(FortuneService fortuneService) {
 		this.fortuneService = fortuneService;
@@ -24,6 +25,6 @@ public class FootballCoach implements Coach {
 	}
 
 	public String getFortune() {
-		return fortuneService.getFortune(); 
+		return fortuneService.getFortune("Football"); 
 	}	
 }

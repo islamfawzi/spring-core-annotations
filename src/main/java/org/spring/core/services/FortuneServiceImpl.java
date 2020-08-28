@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class FortuneServiceImpl implements FortuneService {
 
-	public String getFortune() {
-		return "This is your lucky day!";
+	public String getFortune(String coach) {
+		return String.format("This is the %s fortune!", coach);
 	}
 
 }
