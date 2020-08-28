@@ -11,8 +11,9 @@ public class TennisCoach implements Coach {
 
 	/** setter injection **/
 	/** create setter method and annotate it with @Autowired **/
+	/** setter method can be with any name, not like xml configuration **/
 	@Autowired 
-	public void setFortuneService(FortuneService fortuneService) {
+	public void setFortuneService11(FortuneService fortuneService) {
 		this.fortuneService = fortuneService;
 	}
 
