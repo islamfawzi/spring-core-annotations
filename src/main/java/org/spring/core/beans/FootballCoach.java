@@ -2,6 +2,7 @@ package org.spring.core.beans;
 
 import org.spring.core.services.FortuneService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 //@Component("myCoach")
@@ -16,7 +17,7 @@ public class FootballCoach implements Coach {
 	/** Constructor injection **/
 	/** create constructor and annotate it with @Autowired **/
 	@Autowired
-	public FootballCoach(FortuneService fortuneService) {
+	public FootballCoach(@Qualifier("fortuneServiceImpl") FortuneService fortuneService) {
 		this.fortuneService = fortuneService;
 	}
 

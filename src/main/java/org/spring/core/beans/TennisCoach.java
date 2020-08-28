@@ -2,6 +2,7 @@ package org.spring.core.beans;
 
 import org.spring.core.services.FortuneService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,6 +14,7 @@ public class TennisCoach implements Coach {
 	/** create setter method and annotate it with @Autowired **/
 	/** setter method can be with any name, not like xml configuration **/
 	@Autowired 
+	@Qualifier("fortuneServiceImpl")   // specify the service to be injected
 	public void setFortuneService11(FortuneService fortuneService) {
 		this.fortuneService = fortuneService;
 	}
@@ -24,5 +26,5 @@ public class TennisCoach implements Coach {
 	public String getFortune() {
 		return fortuneService.getFortune("Tennis");
 	}
-
+	
 }
