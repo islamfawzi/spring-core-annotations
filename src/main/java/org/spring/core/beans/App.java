@@ -13,9 +13,11 @@ public class App {
 		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
 		
 		// inject myCoach bean
-		Coach myCoach = applicationContext.getBean("myCoach", Coach.class);
-	
-		logger.info(myCoach.getDailyWork());
+		// Coach myCoach = applicationContext.getBean("myCoach", Coach.class);
+		// logger.info(myCoach.getDailyWork());
+		
+		Coach footballCoach = applicationContext.getBean("footballCoach", Coach.class);
+		logger.info(footballCoach.getDailyWork());
 		
 		// clean up applicationContext
 		applicationContext.close();
