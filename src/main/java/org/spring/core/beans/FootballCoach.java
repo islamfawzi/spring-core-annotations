@@ -3,6 +3,7 @@ package org.spring.core.beans;
 import org.spring.core.services.FortuneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 //@Component("myCoach")
@@ -11,13 +12,16 @@ public class FootballCoach implements Coach {
 	
 	private FortuneService fortuneService;
 	
+	@Value("${coach.football}")
+	private String sport;
+	
 	public FootballCoach() {
 	}
 
 	/** Constructor injection **/
 	/** create constructor and annotate it with @Autowired **/
 	@Autowired
-	public FootballCoach(@Qualifier("fortuneServiceImpl") FortuneService fortuneService) {
+	public FootballCoach(@Qualifier("fortuneServiceImpl") FortuneService fortuneService) { /** @Qulaifier with constructor injection **/
 		this.fortuneService = fortuneService;
 	}
 
@@ -26,6 +30,6 @@ public class FootballCoach implements Coach {
 	}
 
 	public String getFortune() {
-		return fortuneService.getFortune("Football"); 
+		return fortuneService.getFortune(sport); 
 	}	
 }

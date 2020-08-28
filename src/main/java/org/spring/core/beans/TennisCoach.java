@@ -3,12 +3,16 @@ package org.spring.core.beans;
 import org.spring.core.services.FortuneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TennisCoach implements Coach {
 
 	private FortuneService fortuneService;
+	
+	@Value("${coach.tennis}")
+	private String sport;
 
 	/** setter injection **/
 	/** create setter method and annotate it with @Autowired **/
@@ -24,7 +28,7 @@ public class TennisCoach implements Coach {
 	}
 
 	public String getFortune() {
-		return fortuneService.getFortune("Tennis");
+		return fortuneService.getFortune(sport);
 	}
 	
 }
