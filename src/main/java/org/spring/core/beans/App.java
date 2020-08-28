@@ -19,6 +19,9 @@ public class App {
 		Coach footballCoach = applicationContext.getBean("footballCoach", Coach.class);
 		logger.info(footballCoach.getDailyWork());
 		
+		// log the fortune retrieved from AutoWired fortuneService 
+		logger.info(footballCoach.getFortune());
+		
 		// clean up applicationContext
 		applicationContext.close();
 		
