@@ -1,5 +1,10 @@
 package org.spring.core.beans;
 
+import java.util.logging.Logger;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.spring.core.services.FortuneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,12 +15,15 @@ import org.springframework.stereotype.Component;
 @Component // spring will generate default bean id=footballCoach
 public class FootballCoach implements Coach {
 	
+	final Logger logger = Logger.getLogger(this.getClass().getName());
+	
 	private FortuneService fortuneService;
 	
 	@Value("${coach.football}")
 	private String sport;
 	
 	public FootballCoach() {
+		logger.info(sport + "Coach Constructor called!!");
 	}
 
 	/** Constructor injection **/
@@ -32,4 +40,5 @@ public class FootballCoach implements Coach {
 	public String getFortune() {
 		return fortuneService.getFortune(sport); 
 	}	
+	
 }
