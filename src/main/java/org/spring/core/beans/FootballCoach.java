@@ -22,14 +22,14 @@ public class FootballCoach implements Coach {
 	@Value("${coach.football}")
 	private String sport;
 	
-	public FootballCoach() {
-		logger.info(sport + "Coach Constructor called!!");
-	}
 
 	/** Constructor injection **/
 	/** create constructor and annotate it with @Autowired **/
 	@Autowired
 	public FootballCoach(@Qualifier("fortuneServiceImpl") FortuneService fortuneService) { /** @Qulaifier with constructor injection **/
+		
+		logger.info(this.getClass().getSimpleName() + " Constructor called!!");
+		
 		this.fortuneService = fortuneService;
 	}
 
@@ -41,4 +41,19 @@ public class FootballCoach implements Coach {
 		return fortuneService.getFortune(sport); 
 	}	
 	
+	/** PostConstruct & PreDestory 
+	  * The method can have any access modifier (public, protected, private)
+	  * can have any return type. However, you will not be able to capture the return value
+	  * can have any method name
+	  * can not accept any arguments, The method should be no-arg.
+	  **/
+	@PostConstruct
+	private void postConstruct() {
+		logger.info(sport + "Coach -> PostConstruct");
+	}
+	
+	@PreDestroy
+	private void preDestory() {
+		logger.info(sport + "Coach -> PreDestroy");
+	}
 }

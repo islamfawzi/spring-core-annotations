@@ -2,6 +2,9 @@ package org.spring.core.beans;
 
 import java.util.logging.Logger;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.spring.core.services.FortuneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,7 +24,7 @@ public class TennisCoach implements Coach {
 	private String sport;
 
 	public TennisCoach() {
-		logger.info(sport + "Coach Constructor called!!");
+		logger.info(this.getClass().getSimpleName() + "Coach Constructor called!!");
 	}
 
 	/** setter injection **/
@@ -39,6 +42,24 @@ public class TennisCoach implements Coach {
 
 	public String getFortune() {
 		return fortuneService.getFortune(sport);
+	}
+	
+	/** PostConstruct & PreDestory 
+	  * The method can have any access modifier (public, protected, private)
+	  * can have any return type. However, you will not be able to capture the return value
+	  * can have any method name
+	  * can not accept any arguments, The method should be no-arg.
+	  **/
+	@PostConstruct
+	private void postConstruct() {
+		logger.info(sport + "Coach -> PostConstruct");
+	}
+	
+	/** PreDestory method are not called for prototype bean scope, that is also applied on XML configuration
+	  * you have to make custom BeanPostProcessor to call destroy method of prototype beans **/
+	@PreDestroy
+	private void preDestory() {
+		logger.info(sport + "Coach -> PreDestroy");
 	}
 	
 }
